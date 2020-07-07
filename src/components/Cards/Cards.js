@@ -3,7 +3,6 @@ import CountUp from "react-countup";
 import casesImg from "../../images/cases.png";
 import deathsImg from "../../images/deaths-large.png";
 import recoveredImg from "../../images/recovered.png";
-import Moment from "react-moment";
 
 const Cards = ({ data }) => {
   return (
