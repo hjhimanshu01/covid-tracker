@@ -1,18 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './index.css';
-import {
-  Navbar,
-  Cards,
-  CardsBD,
-  Charts,
-  CountryPicker,
-  CountryPickerBD,
-} from './components';
-import { fetchDate, fetchLocalCountry } from './api';
-import Footer from './components/Footer';
+import React, { Component, Fragment } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./index.css";
+import { Navbar, Cards, CountryPicker } from "./components";
+import { fetchDate, fetchLocalCountry } from "./api";
 class App extends Component {
-  state = { data: {}, localData: {}, country: 'Bangladesh' };
+  state = { data: {}, localData: {}, country: "India" };
 
   async componentDidMount() {
     try {
@@ -36,39 +28,18 @@ class App extends Component {
           <Switch>
             <Route
               exact
-              path='/'
+              path="/"
               render={props => (
                 <Fragment>
-                  <Navbar font='font-en' link='/en' nav='English' />
-                  <CardsBD data={data} />
-                  <div className='container'>
-                    <CountryPickerBD
-                      country={country}
-                      localData={localData}
-                      handleCountryChange={this.handleCountryChange}
-                    />
-                    <Charts font='font-bd' msg='গত ৩০ দিনের তথ্য' />
-                  </div>
-                  <Footer font='font-bd' msg='ডেভেলপ করেছে' name='হাসিব' />
-                </Fragment>
-              )}
-            />
-            <Route
-              exact
-              path='/en'
-              render={props => (
-                <Fragment>
-                  <Navbar font='font-bd' link='/' nav='বাংলা' />
+                  <Navbar font="font-bd" link="/" />
                   <Cards data={data} />
-                  <div className='container'>
+                  <div className="container">
                     <CountryPicker
                       country={country}
                       localData={localData}
                       handleCountryChange={this.handleCountryChange}
                     />
-                    <Charts font='font-en' msg={`Last 30 day's information`} />
                   </div>
-                  <Footer font='font-en' msg='Developed' by='by' name='Hasib' />
                 </Fragment>
               )}
             />

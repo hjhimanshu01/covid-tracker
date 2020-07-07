@@ -1,18 +1,18 @@
 // import { NovelCovid } from 'novelcovid';
-import axios from 'axios';
+import axios from "axios";
 
 // const api = new NovelCovid();
-const api = 'https://corona.lmao.ninja/v2';
-const url = 'https://covid19.mathdro.id/api';
+const api = "https://corona.lmao.ninja/v2";
+const url = "https://covid19.mathdro.id/api";
 
 // Global Data
 
 export const fetchDate = async () => {
-  const text = await axios.get(`https://corona.lmao.ninja/v2/countries/bd`);
+  const text = await axios.get(`https://corona.lmao.ninja/v2/countries/in`);
   console.log(text);
   try {
     const {
-      data: { cases, todayCases, recovered, deaths, todayDeaths, updated },
+      data: { cases, todayCases, recovered, deaths, todayDeaths, updated }
     } = await axios.get(`${api}/all`);
 
     const modifiedData = {
@@ -21,7 +21,7 @@ export const fetchDate = async () => {
       recovered,
       todayDeaths,
       deaths,
-      updated,
+      updated
     };
     return modifiedData;
   } catch (err) {
@@ -32,7 +32,7 @@ export const fetchDate = async () => {
 // Local Country
 
 export const fetchLocalCountry = async countryName => {
-  let selectCountry = 'Bangladesh';
+  let selectCountry = "India";
   if (countryName) {
     selectCountry = countryName;
   }
@@ -47,8 +47,8 @@ export const fetchLocalCountry = async countryName => {
         deaths,
         todayDeaths,
         critical,
-        updated,
-      },
+        updated
+      }
     } = await axios.get(`${api}/countries/${selectCountry}`);
 
     const modifiedData = {
@@ -60,7 +60,7 @@ export const fetchLocalCountry = async countryName => {
       todayDeaths,
       deaths,
       critical,
-      updated,
+      updated
     };
 
     return modifiedData;
@@ -77,7 +77,7 @@ export const fetchCountryData = async () => {
     return data.map(info => ({
       country: info.country,
       code: info.countryInfo.iso2,
-      flag: info.countryInfo.flag,
+      flag: info.countryInfo.flag
     }));
   } catch (err) {
     console.log(err);
@@ -92,7 +92,7 @@ export const fetchDaily = async () => {
     const modifiedData = data.map(dailyData => ({
       confirmed: dailyData.confirmed.total,
       deaths: dailyData.deaths.total,
-      date: dailyData.reportDate,
+      date: dailyData.reportDate
     }));
     const lastMonth = modifiedData.slice(-30);
     return lastMonth;
